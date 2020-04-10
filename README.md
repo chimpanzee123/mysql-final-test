@@ -113,28 +113,28 @@ select*from biaoge2 where Hiredate=(select max(Hiredate)from biaoge2);
  update biaoge2 set comm=100 where ename='MILLER';
  select*from biaoge2;
 ```
-
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3.4.png?raw=true)
 ```SQL
  select ename from biaoge2 where comm<100 or comm is NULL;
 ```
-
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3.4.2.png?raw=true)
 3.5 计算每个人的收入(ename, sal + comm)；计算总共有多少人；计算所有人的平均收入。 提示：计算时 NULL 要当做 0 处理； 
 ```SQL
  select count(*) from biaoge2;
 ```
-
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3.5.2.png?raw=true)
 
 ```SQL
 select avg(salary+comm) from biaoge2;
 ```
-
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3.5.3.png?raw=true)
 3.6 显示每个人的下属, 没有下属的显示 NULL。本操作使用关系代数中哪几种运算？
 
 3.7 建立一个视图：每个人的empno, ename, job 和 loc。简述为什么要建立本视图。
 ```SQL
  create view v0 as select empno,ename,job,loc from biaoge2;
 ```
-
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3.7.png?raw=true)
 3.8 为表2增加一个约束：deptno字段需要在表1中存在；这称做什么完整性？
 
 3.9 为表2增加一个索引：ename 字段。简述为什么要在 ename 字段建立索引
@@ -159,7 +159,7 @@ DELIMITER $$
  DELIMITER ;
 select deptno from biaoge2;
 ```
-
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3.11.png?raw=true)
 存储过程和函数存在以下几个区别： 
 1）一般来说，存储过程实现的功能要复杂一点，而函数的实现的功能针对性比较强。存储过程，功能强大，可以执行包括修改表等一系列数据库操作；用户定义函数不能用于执行一组修改全局数据库状态的操作。 
 2）对于存储过程来说可以返回参数，如记录集，而函数只能返回值或者表对象。函数只能返回一个变量；而存储过程可以返回多个。存储过程的参数可以有IN,OUT,INOUT三种类型，而函数只能有IN类.存储过程声明时不需要返回类型，而函数声明时需要描述返回类型，且函数体中必须包含一个有效的RETURN语句。 
