@@ -138,7 +138,8 @@ select avg(salary+comm) from biaoge2;
 3.8 为表2增加一个约束：deptno字段需要在表1中存在；这称做什么完整性？
 
 3.9 为表2增加一个索引：ename 字段。简述为什么要在 ename 字段建立索引
-
+索引能够快速提高查询速度；
+如果不使用索引，mysql必须从第一条记录开始然后读完整个表直到找出相关的行；
 3.10 将表2的 sal 字段改名为 salary
 ```SQL
  alter table biaoge2 change sal salary float;
