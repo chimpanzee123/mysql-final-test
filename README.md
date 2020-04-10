@@ -107,7 +107,7 @@ select*from biaoge2 where Hiredate=(select max(Hiredate)from biaoge2);
 ```
 ![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3.2.png?raw=true)
 3.3 有几种职位（job字段）？在关系代数中，本操作是什么运算？
-
+5个
 3.4 将 MILLER 的 comm 增加 100； 然后，找到 comm 比 MILLER 低的人；
 
 3.5 计算每个人的收入(ename, sal + comm)；计算总共有多少人；计算所有人的平均收入。 提示：计算时 NULL 要当做 0 处理； 
@@ -124,6 +124,7 @@ select*from biaoge2 where Hiredate=(select max(Hiredate)from biaoge2);
 ```SQL
  alter table biaoge2 change sal salary float;
 ```
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3.10.png?raw=true)
 3.11 撰写一个函数输入 get_deptno_from_empno， 输出对应的 deptno。 简述函数和存储过程有什么不同。
 
 4 建立一个新用户，账号为自己的姓名拼音，密码为自己的学号；
