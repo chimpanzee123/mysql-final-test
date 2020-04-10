@@ -109,12 +109,31 @@ select*from biaoge2 where Hiredate=(select max(Hiredate)from biaoge2);
 3.3 有几种职位（job字段）？在关系代数中，本操作是什么运算？
 5个
 3.4 将 MILLER 的 comm 增加 100； 然后，找到 comm 比 MILLER 低的人；
+```SQL
+ update biaoge2 set comm=100 where ename='MILLER';
+ select*from biaoge2;
+```
+
+```SQL
+ select ename from biaoge2 where comm<100 or comm is NULL;
+```
 
 3.5 计算每个人的收入(ename, sal + comm)；计算总共有多少人；计算所有人的平均收入。 提示：计算时 NULL 要当做 0 处理； 
+```SQL
+ select count(*) from biaoge2;
+```
+
+
+```SQL
+select avg(salary+comm) from biaoge2;
+```
 
 3.6 显示每个人的下属, 没有下属的显示 NULL。本操作使用关系代数中哪几种运算？
 
 3.7 建立一个视图：每个人的empno, ename, job 和 loc。简述为什么要建立本视图。
+```SQL
+ create view v0 as select empno,ename,job,loc from biaoge2;
+```
 
 3.8 为表2增加一个约束：deptno字段需要在表1中存在；这称做什么完整性？
 
@@ -124,9 +143,28 @@ select*from biaoge2 where Hiredate=(select max(Hiredate)from biaoge2);
 ```SQL
  alter table biaoge2 change sal salary float;
 ```
+
+检验是否有不存在的数据
 ![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3.10.png?raw=true)
 3.11 撰写一个函数输入 get_deptno_from_empno， 输出对应的 deptno。 简述函数和存储过程有什么不同。
+```SQL
+DELIMITER $$
+    CREATE FUNCTION get_deptno_from_empno (empno INT)   #func_employee_sal表示所要创建的存储过程名字
+        RETURNS DOUBLE
+    BEGIN
+        RETURN (SELECT salary 
+            FROM biaoge2 
+            WHERE biaoge2.empno = empno);
+    END$$
+ DELIMITER ;
+select deptno from biaoge2;
+```
 
+存储过程和函数存在以下几个区别： 
+1）一般来说，存储过程实现的功能要复杂一点，而函数的实现的功能针对性比较强。存储过程，功能强大，可以执行包括修改表等一系列数据库操作；用户定义函数不能用于执行一组修改全局数据库状态的操作。 
+2）对于存储过程来说可以返回参数，如记录集，而函数只能返回值或者表对象。函数只能返回一个变量；而存储过程可以返回多个。存储过程的参数可以有IN,OUT,INOUT三种类型，而函数只能有IN类.存储过程声明时不需要返回类型，而函数声明时需要描述返回类型，且函数体中必须包含一个有效的RETURN语句。 
+3）存储过程，可以使用非确定函数，不允许在用户定义函数主体中内置非确定函数。 
+4）存储过程一般是作为一个独立的部分来执行（ EXECUTE 语句执行），而函数可以作为查询语句的一个部分来调用（SELECT调用），由于函数可以返回一个表对象，因此它可以在查询语句中位于FROM关键字的后面。 SQL语句中不可用存储过程，而可以使用函数。
 4 建立一个新用户，账号为自己的姓名拼音，密码为自己的学号；
 
 4.1 将表1的SELECT, INSERT, UPDATE(ename)权限赋给该账号。
