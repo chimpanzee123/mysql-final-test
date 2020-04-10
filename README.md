@@ -19,10 +19,12 @@
 ```SQL
 select now();
 ```
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/1...png?raw=true)
 2 组合打印自己的姓名和学号
 ```SQL
 select"lihaojun+17061411"name;
 ```
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/2...png?raw=true)
 (例如 张三+123456 或者 zhangsan+123456 显示需包含加号)，写出SQL语句和结果
 
 3 建立如下表1和表2，写出建表语句和插入语句。
@@ -34,7 +36,7 @@ create table biaoge1(
      insert into biaoge1 values
     (10, "ACCOUNTING", "NEW YORK"),(20, "RESEARCH", "DALLAS"),(30, "SALES", "CHICAGO"),(40, "OPERATIONS", "BOSTON");
 ```
-
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3..1.png?raw=true)
 ```SQL
 CREATE TABLE biaoge2 (	
     	deptno INT NOT NULL,
@@ -62,6 +64,7 @@ INSERT INTO biaoge2 (empno, ename, job, MGR, Hiredate, sal, comm, deptno)
 	(7902, "FORD", "ANALYST", 7566, "1981-03-12", 3000, NULL, 20),
 	(7934, "MILLER", "CLERK", 7782, "1981-03-12", 1300, NULL, 10);
 ```
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3..2.png?raw=true)
 表1：其中deptno为主键
 ```
 deptno, dname,    loc
@@ -95,13 +98,14 @@ deptno, dname,    loc
     VALUES(17061411,"lihaojun","student",7782,"1999-07-14",NULL,NULL,10);
 ```
 `(你的学号，你的姓名或者拼音， “CLERK”, 7782, 你的生日,  NULL, NULL, 10)`
- 
+ ![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3.1.png?raw=true)
 例如：`(12345,  "Zhangsan", "sTUDENT", 7782, "2000-03-12", NULL, NULL, 10)`
 
 3.2 表中入职时间（Hiredate字段）最短的人。
 ```SQL
 select*from biaoge2 where Hiredate=(select max(Hiredate)from biaoge2);
 ```
+![](https://github.com/chimpanzee123/mysql-final-test/blob/master/3.2.png?raw=true)
 3.3 有几种职位（job字段）？在关系代数中，本操作是什么运算？
 
 3.4 将 MILLER 的 comm 增加 100； 然后，找到 comm 比 MILLER 低的人；
@@ -117,7 +121,9 @@ select*from biaoge2 where Hiredate=(select max(Hiredate)from biaoge2);
 3.9 为表2增加一个索引：ename 字段。简述为什么要在 ename 字段建立索引
 
 3.10 将表2的 sal 字段改名为 salary
-
+```SQL
+ alter table biaoge2 change sal salary float;
+```
 3.11 撰写一个函数输入 get_deptno_from_empno， 输出对应的 deptno。 简述函数和存储过程有什么不同。
 
 4 建立一个新用户，账号为自己的姓名拼音，密码为自己的学号；
